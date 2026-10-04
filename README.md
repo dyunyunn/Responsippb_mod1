@@ -73,3 +73,5 @@ Tabel `loans` pada Supabase:
 
 ## Link Hasil Deployment Vercel
 [https://responsippb-mod1.vercel.app]
+
+## DIKERJAKAN OLEH YUNITA DWI ARDILASARI (21120124120001) KELOMPOK 1
