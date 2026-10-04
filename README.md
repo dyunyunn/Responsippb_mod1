@@ -1,53 +1,75 @@
-# REST API Peminjaman Buku Perpustakaan
+# REST API Peminjaman Buku Perpustakaan (Responsi PPB)
+
+---
+## Panduan Pengujian API (Untuk Asisten Praktikum)
+Berikut adalah panduan untuk melakukan *testing* seluruh operasi CRUD menggunakan Postman. Pastikan menggunakan **Base URL Vercel** di atas (bukan localhost) untuk menguji API yang sudah *live*.
+
+### 1. CREATE - Tambah Data Peminjaman (POST)
+1. **Endpoint:** `/loans`
+2. **Method:** `POST`
+3. **Body (JSON):**
+    ```json
+    {
+      "member_name": "Rina",
+      "book_title": "Belajar React",
+      "borrow_date": "2026-10-04",
+      "status": "Dipinjam"
+    }
+    ```
+*Catatan Validasi:* Input `status` dibatasi dan **hanya menerima** 3 nilai: `"Dipinjam"`, `"Dikembalikan"`, atau `"Terlambat"`. Jika memasukkan status selain 3 kata tersebut, API otomatis menolak dengan error 400.
+
+### 2. READ - Lihat Semua Data (GET)
+1. **Endpoint:** `/loans`
+2. **Method:** `GET`
+3. **Fitur Filter:** Bisa menambahkan *query parameter* untuk menyaring status tertentu. 
+    Contoh: `/loans?status=Terlambat`
+
+### 3. UPDATE - Ubah Status Peminjaman (PUT)
+1. **Endpoint:** `/loans/:id` (Ganti `:id` dengan angka ID data yang ingin diubah)
+2. **Method:** `PUT`
+3. **Body (JSON):**
+    ```json
+    {
+      "status": "Dikembalikan"
+    }
+    ```
+*Catatan Validasi:* Sama seperti POST, input status saat *update* juga dilindungi oleh validasi.
+
+### 4. DELETE - Hapus Data (DELETE)
+1. **Endpoint:** `/loans/:id` (Ganti `:id` dengan angka ID data yang ingin dihapus)
+2. **Method:** `DELETE`
+3. **Body:** *(Kosong / None)*
+---
 
 ## Deskripsi Umum & Tujuan Proyek
-REST API sederhana yang dibangun menggunakan Node.js, Express.js, dan Supabase untuk mengelola pencatatan peminjaman buku perpustakaan. API ini mendukung operasi CRUD dan filter pencarian status peminjaman.
+REST API sederhana yang dibangun menggunakan Node.js, Express.js, dan Supabase untuk mengelola pencatatan peminjaman buku perpustakaan. 
 
 ## Struktur Data / Schema
-Tabel `loans`:
-- `id` (int8/uuid) - Primary Key
-- `member_name` (text) - Nama Peminjam
-- `book_title` (text) - Judul Buku
-- `borrow_date` (date) - Tanggal Peminjaman
-- `status` (text) - Contoh: "Dipinjam", "Dikembalikan", "Terlambat"
+Tabel `loans` pada Supabase:
+1.  `id` (int8/uuid) - Primary Key
+2.  `member_name` (text) - Nama Peminjam
+3.  `book_title` (text) - Judul Buku
+4.  `borrow_date` (date) - Tanggal Peminjaman
+5.  `status` (text) - ("Dipinjam", "Dikembalikan", "Terlambat")
 
-## Contoh Request & Response
-**GET /loans?status=Terlambat**
-Response:
-```json
-{
-  "data": [
-    {
-      "id": 1,
-      "member_name": "Budi",
-      "book_title": "Pemrograman Node.js",
-      "borrow_date": "2026-10-01",
-      "status": "Terlambat"
-    }
-  ]
-}
-```
-
-## Panduan Instalasi
-1. Buka terminal dan jalankan git clone <link-repo-github-kamu> untuk mengunduh kode dari repository ini.
-2. Masuk ke direktori proyek dengan mengetikkan cd <nama-folder-proyek>.
-3. Jalankan perintah npm install untuk mengunduh dan menginstal semua dependensi yang dibutuhkan. Dependensi yang digunakan meliputi:
-    express: Framework utama untuk membangun server API.
-    @supabase/supabase-js: Library untuk menghubungkan API dengan database Supabase.
-    dotenv: Untuk mengelola variabel lingkungan (menyembunyikan URL & Key Supabase).
-    cors: Middleware agar API bisa diakses oleh aplikasi web klien.
-    nodemon: (DevDependency) Untuk me-restart server otomatis saat masa pengembangan.
-4. Buat file baru bernama .env di root folder proyek.
-5. Buka file .env tersebut dan masukkan kredensial Supabase Anda dengan format berikut:
-    SUPABASE_URL=masukkan_url_supabase_disini
-    SUPABASE_KEY=masukkan_anon_key_supabase_disini
+## Panduan Instalasi Lokal 
+1. Buka terminal dan jalankan `git clone https://github.com/dyunyunn/Responsippb_mod1.git`
+2. Masuk ke direktori proyek dengan perintah `cd nama direktorimu`.
+3. Jalankan `npm install` untuk menginstal dependensi:
+   - `express`: Framework server API.
+   - `@supabase/supabase-js`: Koneksi ke database Supabase.
+   - `dotenv`: Pengelola variabel lingkungan.
+   - `cors`: Middleware akses API lintas domain.
+   - `nodemon`: DevDependency untuk auto-restart server.
+4. Buat file `.env` di root folder proyek dan masukkan kredensial Supabase.
+   isikan dengan ini:
+   SUPABASE_URL=masukkan_url_supabase_disini
+   SUPABASE_KEY=masukkan_anon_key_supabase_disini
 
 ## Cara Menjalankan Lokal
-1. Pastikan Anda sudah berada di dalam folder proyek pada terminal.
-2. Jalankan perintah npm run dev untuk menyalakan server lokal.
-3. Tunggu hingga terminal menampilkan pesan bahwa server telah berjalan di port 3000.
-4. API sudah aktif dan siap diuji coba (testing) untuk seluruh operasi CRUD menggunakan aplikasi Postman dengan mengakses Base URL: http://localhost:3000.
+1. Jalankan perintah npm run dev pada terminal di dalam folder proyek.
+2. Server akan berjalan di port 3000.
+3. API siap diuji coba secara lokal melalui http://localhost:3000.
 
 ## Link Hasil Deployment Vercel
-[Link Vercel]
-
+[https://responsippb-mod1.vercel.app]
