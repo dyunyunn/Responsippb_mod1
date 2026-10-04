@@ -1,5 +1,8 @@
 # REST API Peminjaman Buku Perpustakaan (Responsi PPB)
 
+## Link base URL vercel
+[https://responsippb-mod1.vercel.app]
+
 ---
 ## Panduan Pengujian API (Untuk Asisten Praktikum)
 Berikut adalah panduan untuk melakukan *testing* seluruh operasi CRUD menggunakan Postman. Pastikan menggunakan **Base URL Vercel** di atas (bukan localhost) untuk menguji API yang sudah *live*.
@@ -54,7 +57,7 @@ Tabel `loans` pada Supabase:
 
 ## Panduan Instalasi Lokal 
 1. Buka terminal dan jalankan `git clone https://github.com/dyunyunn/Responsippb_mod1.git`
-2. Masuk ke direktori proyek dengan perintah `cd nama direktorimu`.
+2. Masuk ke direktori proyek dengan perintah `cd Responsippb_mod1`.
 3. Jalankan `npm install` untuk menginstal dependensi:
    - `express`: Framework server API.
    - `@supabase/supabase-js`: Koneksi ke database Supabase.
