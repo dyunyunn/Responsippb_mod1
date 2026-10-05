@@ -4,8 +4,8 @@
 [https://responsippb-mod1.vercel.app]
 
 ---
-## Panduan Pengujian API (Untuk Asisten Praktikum)
-Berikut adalah panduan untuk melakukan *testing* seluruh operasi CRUD menggunakan Postman. Pastikan menggunakan **Base URL Vercel** di atas (bukan localhost) untuk menguji API yang sudah *live*.
+## Contoh Request dan Response 
+Berikut adalah format request dan panduan *testing* seluruh operasi CRUD menggunakan Postman. Pastikan menggunakan **Base URL Vercel** di atas.
 
 ### 1. CREATE - Tambah Data Peminjaman (POST)
 1. **Endpoint:** `/loans`
